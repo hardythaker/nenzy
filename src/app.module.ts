@@ -34,7 +34,7 @@ import { JobTitleModule } from './job-title/job-title.module';
       },
     }),
     JobModule,
-    JobTitleModule
+    JobTitleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

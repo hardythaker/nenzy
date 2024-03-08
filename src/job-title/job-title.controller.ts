@@ -21,7 +21,7 @@ export class JobTitleController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.jobTitleService.findOne(+id);
+    return this.jobTitleService.findOne(id);
   }
 
   @Patch(':id')
@@ -29,11 +29,11 @@ export class JobTitleController {
     @Param('id') id: string,
     @Body() updateJobTitleDto: UpdateJobTitleDto,
   ) {
-    return this.jobTitleService.update(+id, updateJobTitleDto);
+    return this.jobTitleService.update(id, updateJobTitleDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.jobTitleService.remove(+id);
+    return this.jobTitleService.remove(id);
   }
 }

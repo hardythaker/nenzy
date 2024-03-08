@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { CreateJobTitleDto } from './dto/create-job-title.dto';
 import { UpdateJobTitleDto } from './dto/update-job-title.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { JobTitle } from './schemas/job-title.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class JobTitleService {
+  constructor(
+    @InjectModel(JobTitle.name) private jobTitleModel: Model<JobTitle>,
+  ) {}
+
   create(createJobTitleDto: CreateJobTitleDto) {
-    return 'This action adds a new jobTitle';
+    return this.jobTitleModel.create(createJobTitleDto);
   }
 
   findAll() {
-    return `This action returns all jobTitle`;
+    return this.jobTitleModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} jobTitle`;
+  findOne(id: string) {
+    return this.jobTitleModel.findById(id).exec();
   }
 
-  update(id: number, updateJobTitleDto: UpdateJobTitleDto) {
-    return `This action updates a #${id} jobTitle`;
+  update(id: string, updateJobTitleDto: UpdateJobTitleDto) {
+    return this.jobTitleModel
+      .findByIdAndUpdate(id, updateJobTitleDto, { new: true })
+      .exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} jobTitle`;
+  remove(id: string) {
+    return this.jobTitleModel.findByIdAndDelete(id).exec();
   }
 }

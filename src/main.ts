@@ -30,6 +30,7 @@ async function bootstrap() {
     .setTitle('Nenzy API')
     .setDescription('The Nenzy API documentation')
     .setVersion('1.0')
+    .addServer('http://localhost:3000/', 'Local environment')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);

@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import * as Joi from 'joi';
+import { LoggerModule } from 'nestjs-pino';
 
 @Module({
   imports: [
@@ -18,7 +19,17 @@ import * as Joi from 'joi';
       useFactory: async (config: ConfigService) => ({
         uri: config.get<string>('DATABASE_URI'), // Loaded from .ENV
       })
-    })
+    }),
+    LoggerModule.forRoot({
+      pinoHttp: {
+        transport: {
+          target: 'pino-pretty',
+          options: {
+            singleLine: true,
+          },
+        },
+      }
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

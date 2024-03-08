@@ -28,6 +28,6 @@ export class JobService {
   }
 
   async remove(id: string) {
-    return this.jobModel.findByIdAndDelete(id);
+    return this.jobModel.findByIdAndDelete(id).exec();
   }
 }

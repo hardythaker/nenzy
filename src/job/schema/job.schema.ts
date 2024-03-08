@@ -3,25 +3,27 @@ import { HydratedDocument, SchemaTypes } from "mongoose";
 
 export type JobDocument = HydratedDocument<Job>;
 
-@Schema()
+@Schema({
+  timestamps: true,
+})
 export class Job {
-    @Prop({type: SchemaTypes.String, required: true})
-    title!: string;
+  @Prop({ type: SchemaTypes.String, required: true })
+  title!: string;
 
-    @Prop({type: SchemaTypes.String, required: true})
-    level!: string
+  @Prop({ type: SchemaTypes.String, required: true })
+  level!: string;
 
-    @Prop({type: [SchemaTypes.String]})
-    customQuestions!: string[];
+  @Prop({ type: [SchemaTypes.String] })
+  customQuestions!: string[];
 
-    @Prop({type: SchemaTypes.String, required: true})
-    departmentId!: string;
+  @Prop({ type: SchemaTypes.String, required: true })
+  departmentId!: string;
 
-    @Prop({type: SchemaTypes.Number})
-    limit!: number;
+  @Prop({ type: SchemaTypes.Number })
+  limit!: number;
 
-    @Prop({type: SchemaTypes.Date})
-    endDate!: Date;
+  @Prop({ type: SchemaTypes.Date })
+  endDate!: Date;
 }
 
 export const JobSchema = SchemaFactory.createForClass(Job);

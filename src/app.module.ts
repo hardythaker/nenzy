@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { JobModule } from './job/job.module';
 import * as Joi from 'joi';
 import { LoggerModule } from 'nestjs-pino';
+import { JobTitleModule } from './job-title/job-title.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { LoggerModule } from 'nestjs-pino';
       }
     }),
     JobModule,
+    JobTitleModule
   ],
   controllers: [AppController],
   providers: [AppService],

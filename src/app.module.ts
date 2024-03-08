@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { JobModule } from './job/job.module';
 import * as Joi from 'joi';
 import { LoggerModule } from 'nestjs-pino';
 
@@ -30,6 +31,7 @@ import { LoggerModule } from 'nestjs-pino';
         },
       }
     }),
+    JobModule,
   ],
   controllers: [AppController],
   providers: [AppService],

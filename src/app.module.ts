@@ -7,6 +7,7 @@ import { JobModule } from './job/job.module';
 import * as Joi from 'joi';
 import { LoggerModule } from 'nestjs-pino';
 import { JobTitleModule } from './job-title/job-title.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { JobTitleModule } from './job-title/job-title.module';
     }),
     JobModule,
     JobTitleModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

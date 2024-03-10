@@ -8,6 +8,9 @@ import * as Joi from 'joi';
 import { LoggerModule } from 'nestjs-pino';
 import { JobTitleModule } from './job-title/job-title.module';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -37,8 +40,15 @@ import { UserModule } from './user/user.module';
     JobModule,
     JobTitleModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
 })
 export class AppModule {}

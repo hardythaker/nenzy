@@ -23,18 +23,6 @@ export class User {
   userType!: string;
 
   @Prop()
-  companyName?: string;
-
-  @Prop()
-  companySize?: string;
-
-  @Prop()
-  companyDeparments?: string[];
-
-  @Prop()
-  roles?: string[];
-
-  @Prop()
   refreshToken?: string;
 
   @Prop({ default: true })

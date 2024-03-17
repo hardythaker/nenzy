@@ -17,21 +17,6 @@ export enum USER_TYPE {
   candidate = 'candidate',
 }
 
-export enum USER_ROLE {
-  owner = 'owner',
-  admin = 'admin',
-  maintainer = 'maintainer',
-}
-
-export enum COMPANY_SIZE {
-  'Less than 10' = 'Less than 10',
-  '11 - 50' = '11 - 50',
-  '51 - 200' = '51 - 200',
-  '201 - 1000' = '201 - 1000',
-  '1001 - 5000' = '1001 - 5000',
-  'More than 5000' = 'More than 5000',
-}
-
 export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
@@ -52,24 +37,6 @@ export class CreateUserDto {
 
   @IsEnum(USER_TYPE)
   userType!: USER_TYPE;
-
-  // **Custom validation decorator**
-  @ValidateIf((o) => o.userType === 'company')
-  companyName?: string;
-
-  @ValidateIf((o) => o.userType === 'company')
-  @IsIn(Object.values(COMPANY_SIZE), { each: true })
-  companySize?: COMPANY_SIZE;
-
-  @ValidateIf((o) => o.userType === 'company')
-  @IsArray() // Enforce at least one department
-  @IsString({ each: true })
-  companyDeparments?: string[];
-
-  @ValidateIf((o) => o.userType === 'company')
-  @IsArray() // Enforce at least one role
-  @IsIn(Object.values(USER_ROLE), { each: true })
-  roles?: USER_ROLE[];
 
   @ApiProperty({ required: false, default: true })
   @IsBoolean()

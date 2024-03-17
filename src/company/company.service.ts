@@ -1,26 +1,39 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
+import { Model } from 'mongoose';
+import { Company } from './entities/company.entity';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class CompanyService {
+  constructor(
+    @InjectModel(Company.name) private readonly companyModel: Model<Company>,
+  ) {}
+
   create(createCompanyDto: CreateCompanyDto) {
-    return 'This action adds a new company';
+    const newCompany = new this.companyModel(createCompanyDto);
+    return newCompany.save();
   }
 
   findAll() {
-    return `This action returns all company`;
+    return this.companyModel.find().lean().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} company`;
+  findOne(id: string) {
+    return this.companyModel.findById(id).lean().exec();
   }
 
-  update(id: number, updateCompanyDto: UpdateCompanyDto) {
-    return `This action updates a #${id} company`;
+  update(id: string, updateCompanyDto: UpdateCompanyDto) {
+    return this.companyModel
+      .findByIdAndUpdate(id, updateCompanyDto, { new: true, lean: true })
+      .exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} company`;
+  //`This action removes a #${id} company`
+  remove(id: string) {
+    return this.companyModel
+      .findByIdAndDelete(id, { new: true, lean: true })
+      .exec();
   }
 }

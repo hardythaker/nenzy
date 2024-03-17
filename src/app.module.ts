@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { DepartmentModule } from './department/department.module';
+import { CompanyModule } from './company/company.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { DepartmentModule } from './department/department.module';
     UserModule,
     AuthModule,
     DepartmentModule,
+    CompanyModule,
   ],
   controllers: [AppController],
   providers: [

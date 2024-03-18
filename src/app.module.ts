@@ -14,6 +14,7 @@ import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { DepartmentModule } from './department/department.module';
 import { CompanyModule } from './company/company.module';
 import { RoleModule } from './role/role.module';
+import { CompanyUserRoleModule } from './company-user-role/company-user-role.module';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { RoleModule } from './role/role.module';
     DepartmentModule,
     CompanyModule,
     RoleModule,
+    CompanyUserRoleModule,
   ],
   controllers: [AppController],
   providers: [

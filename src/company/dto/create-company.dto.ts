@@ -36,10 +36,4 @@ export class CreateCompanyDto {
   memberId!: Types.ObjectId;
 }
 
-export enum USER_ROLE {
-  owner = 'owner',
-  admin = 'admin',
-  maintainer = 'maintainer',
-}
-
 // @IsIn(Object.values(COMPANY_SIZE), { each: true })

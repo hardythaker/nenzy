@@ -1,11 +1,10 @@
 import { IsMongoId } from 'class-validator';
-import { Types } from 'mongoose';
 
 export class CreateCompanyUserRoleDto {
   @IsMongoId()
-  user_id!: Types.ObjectId;
+  userId!: string;
   @IsMongoId()
-  company_id!: Types.ObjectId;
+  roleId!: string;
   @IsMongoId()
-  role_id!: Types.ObjectId;
+  companyId!: string;
 }

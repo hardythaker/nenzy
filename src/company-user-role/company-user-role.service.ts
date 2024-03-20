@@ -28,6 +28,10 @@ export class CompanyUserRoleService {
     return this.companyUserRoleModel.findById(id);
   }
 
+  findOneByUserId(userId: string) {
+    return this.companyUserRoleModel.findOne({ user: userId });
+  }
+
   //`This action updates a #${id} role`
   update(id: string, updateCompanyUserRoleDto: UpdateCompanyUserRoleDto) {
     return this.companyUserRoleModel
@@ -38,5 +42,12 @@ export class CompanyUserRoleService {
   //`This action removes a #${id} role`
   remove(id: string) {
     return this.companyUserRoleModel.findByIdAndDelete(id).lean().exec();
+  }
+
+  removeByCompanyId(companyId: string) {
+    return this.companyUserRoleModel
+      .deleteMany({ company: companyId })
+      .lean()
+      .exec();
   }
 }

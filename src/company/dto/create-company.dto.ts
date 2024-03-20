@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsIn, IsMongoId, IsNotEmpty } from 'class-validator';
+import {
+  IsEnum,
+  IsIn,
+  IsMongoId,
+  IsNotEmpty,
+  IsOptional,
+} from 'class-validator';
 import { Types } from 'mongoose';
 
 export enum COMPANY_SIZE {
@@ -14,8 +20,9 @@ export enum COMPANY_SIZE {
 export class CreateCompanyDto {
   id!: string;
 
+  //TODO: Remove this, we can extract user id from Req Object
   @IsMongoId()
-  userId!: Types.ObjectId;
+  userId!: string;
 
   @IsNotEmpty()
   name!: string;
@@ -26,14 +33,12 @@ export class CreateCompanyDto {
   })
   size!: COMPANY_SIZE;
 
-  @IsMongoId()
-  departmentIds!: Types.ObjectId[];
+  @IsMongoId({ each: true })
+  departmentIds!: string[];
 
   @IsMongoId()
-  planId!: Types.ObjectId;
-
-  @IsMongoId()
-  memberId!: Types.ObjectId;
+  @IsOptional()
+  planId?: string;
 }
 
 // @IsIn(Object.values(COMPANY_SIZE), { each: true })

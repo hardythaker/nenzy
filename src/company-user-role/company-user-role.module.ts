@@ -18,5 +18,6 @@ import {
   ],
   controllers: [CompanyUserRoleController],
   providers: [CompanyUserRoleService],
+  exports: [CompanyUserRoleService],
 })
 export class CompanyUserRoleModule {}

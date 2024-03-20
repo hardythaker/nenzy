@@ -23,8 +23,12 @@ export class RoleService {
   }
 
   //`This action returns a #${id} role`
-  findOne(id: string) {
+  findOneById(id: string) {
     return this.roleModel.findById(id);
+  }
+
+  findOneByName(name: string) {
+    return this.roleModel.findOne({ name }).exec();
   }
 
   //`This action updates a #${id} role`

@@ -18,11 +18,9 @@ export enum USER_TYPE {
 }
 
 export class CreateUserDto {
-  @IsNotEmpty()
   @IsString()
   fullName!: string;
 
-  @IsNotEmpty()
   @IsEmail()
   username!: string;
 

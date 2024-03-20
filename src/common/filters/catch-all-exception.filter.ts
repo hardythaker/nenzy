@@ -16,6 +16,7 @@ export class CatchALLException implements ExceptionFilter {
 
     response.status(status).json({
       message: [exception.message ?? 'Internal Server Error'],
+      error: exception.name,
       statusCode: status,
     });
   }

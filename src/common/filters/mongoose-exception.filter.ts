@@ -10,6 +10,7 @@ export class MongooseExceptionFilter implements ExceptionFilter {
 
     response.status(status).json({
       message: [exception.message],
+      error: exception.name,
       statusCode: status,
     });
   }

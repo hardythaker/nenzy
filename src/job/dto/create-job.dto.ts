@@ -1,29 +1,42 @@
-import { Transform } from "class-transformer";
-import { IsArray, IsDateString, IsInt, IsNotEmpty, IsOptional, IsString, Min, MinDate, ValidateNested } from "class-validator";
+import {
+  IsArray,
+  IsDateString,
+  IsEnum,
+  IsInt,
+  IsMongoId,
+  IsOptional,
+  IsString,
+  Min,
+} from 'class-validator';
+import { JobLevel } from '../schema/job.schema';
 
 export class CreateJobDto {
-    @IsString()
-    @IsNotEmpty()
-    title!: string;
-    
-    @IsString()
-    @IsNotEmpty()
-    level!: string
+  @IsMongoId()
+  companyId!: string;
 
-    @IsOptional()
-    @IsArray()
-    @IsString({ each: true })
-    customQuestions!: string[];
+  @IsMongoId()
+  userId!: string;
 
-    @IsString()
-    @IsNotEmpty()
-    departmentId!: string;
+  @IsMongoId()
+  titleId!: string;
 
-    @IsOptional()
-    @IsInt()
-    @Min(1) // Optional validation for positive limit
-    limit?: number;
+  @IsEnum(JobLevel)
+  level!: string;
 
-    @IsDateString()
-    endDate!: Date;
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  customQuestions?: string[];
+
+  @IsMongoId()
+  departmentId!: string;
+
+  @IsOptional()
+  @IsInt()
+  @Min(1) //Optional validation for positive limit
+  limit?: number;
+
+  @IsOptional()
+  @IsDateString()
+  endDate?: Date;
 }

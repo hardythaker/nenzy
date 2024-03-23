@@ -9,7 +9,7 @@ export type CompanyDocument = HydratedDocument<Company>;
   timestamps: true,
 })
 export class Company {
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true })
   name!: string;
 
   @Prop({ required: true, enum: COMPANY_SIZE })
@@ -25,7 +25,7 @@ export class Company {
 
   //TODO: fecth the plan ids and add the FreePlan's id as default Plan Id
   @Prop({ type: Types.ObjectId, required: true, default: 1 }) //ref: Plan.name
-  plans?: Types.ObjectId; //TODO change it to plan
+  plan?: Types.ObjectId; //TODO change it to plan class
 }
 
 export const CompanySchema = SchemaFactory.createForClass(Company);

@@ -9,8 +9,8 @@ export class JobTitle {
   @Prop({ required: true })
   name!: string;
 
-  @Prop({ required: true })
-  unicode!: string;
+  @Prop({ default: 'U+1F600' })
+  unicode?: string;
 }
 
 export const JobTitleSchema = SchemaFactory.createForClass(JobTitle);

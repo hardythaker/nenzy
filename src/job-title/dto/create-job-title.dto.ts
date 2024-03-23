@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateJobTitleDto {
   /**
@@ -12,6 +12,6 @@ export class CreateJobTitleDto {
    * The unicode of the emoji selected for job title.
    * @example U+1F600
    */
-  @IsNotEmpty()
-  unicode!: string;
+  @IsOptional()
+  unicode?: string;
 }

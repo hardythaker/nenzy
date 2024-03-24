@@ -16,6 +16,7 @@ import { CompanyModule } from './company/company.module';
 import { RoleModule } from './role/role.module';
 import { CompanyUserRoleModule } from './company-user-role/company-user-role.module';
 import { PlanModule } from './plan/plan.module';
+import { CouponModule } from './coupon/coupon.module';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { PlanModule } from './plan/plan.module';
     RoleModule,
     CompanyUserRoleModule,
     PlanModule,
+    CouponModule,
   ],
   controllers: [AppController],
   providers: [

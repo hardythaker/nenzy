@@ -66,7 +66,7 @@ export class Job {
   @Prop({ type: Boolean, default: true })
   isPublic?: boolean;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: true, unique: true })
   publicLink!: string;
 }
 

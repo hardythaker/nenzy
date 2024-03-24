@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { JobService } from './job.service';
 import { CreateJobDto } from './dto/create-job.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
@@ -10,13 +19,27 @@ export class JobController {
   constructor(private readonly jobService: JobService) {}
 
   @Post()
-  create(@Body() createJobDto: CreateJobDto) {
-    return this.jobService.create(createJobDto);
+  async create(@Body() createJobDto: CreateJobDto) {
+    const createdJob = await this.jobService.create(createJobDto);
+    //return createdJob;
+    return {
+      _id: createdJob.id,
+      isPublic: createdJob.isPublic,
+      publicLink: createdJob.publicLink,
+    };
   }
 
   @Get()
   findAll() {
     return this.jobService.findAll();
+  }
+
+  @Get('public')
+  findJobByPublicLink(@Query('job') publicLink: string) {
+    return this.jobService
+      .findJobByPublicLink(publicLink)
+      .populate(['title', 'company'])
+      .exec();
   }
 
   @Get(':id')

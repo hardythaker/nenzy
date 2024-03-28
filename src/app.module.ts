@@ -17,6 +17,7 @@ import { RoleModule } from './role/role.module';
 import { CompanyUserRoleModule } from './company-user-role/company-user-role.module';
 import { PlanModule } from './plan/plan.module';
 import { CouponModule } from './coupon/coupon.module';
+import { SubscriptionModule } from './subscription/subscription.module';
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { CouponModule } from './coupon/coupon.module';
     CompanyUserRoleModule,
     PlanModule,
     CouponModule,
+    SubscriptionModule,
   ],
   controllers: [AppController],
   providers: [

@@ -11,6 +11,7 @@ import { RoleService } from 'src/role/role.service';
 import { RoleDocument } from 'src/role/entities/role.entity';
 import { DeleteResult } from 'mongodb';
 import { CompanyUserRoleDocument } from 'src/company-user-role/schemas/company-user-role.schema';
+import { PlanService } from 'src/plan/plan.service';
 
 @Injectable()
 export class CompanyService {
@@ -18,12 +19,14 @@ export class CompanyService {
     @InjectModel(Company.name) private readonly companyModel: Model<Company>,
     private readonly companyUserRoleService: CompanyUserRoleService,
     private readonly roleService: RoleService,
+    private readonly planService: PlanService,
   ) {}
 
   async create(createCompanyDto: CreateCompanyDto) {
     const newCompany = new this.companyModel(createCompanyDto);
 
-    //Whenever we create a company we also set the Default Role ID to 'Owner'
+    //Whenever we create a company we also create an associated CompanyUserRole
+    //set the Default Role ID to 'Owner'
     let role: RoleDocument | null;
     try {
       role = await this.roleService.findOneByName('owner');
@@ -49,7 +52,7 @@ export class CompanyService {
       );
     }
 
-    //Whenever we create a company we also create an associated CompanyUserRole
+    //create an associated CompanyUserRole
     let createdCompanyUserRole: CompanyUserRoleDocument;
     try {
       createdCompanyUserRole =
@@ -62,6 +65,20 @@ export class CompanyService {
       throw new MongooseError(
         'Unable to create an entry for companyUserRole table',
       );
+    }
+
+    // Sets the default value to 'Free' plan id
+    // Fetch the 'free' plan ID
+    try {
+      const freePlan = await this.planService.findOneByName('free');
+      if (!freePlan?.id) {
+        throw new MongooseError('Unable to fetch the default Plan ID');
+      }
+      newCompany.plan = freePlan.id; // Assign the 'free' plan ID
+    } catch (error) {
+      console.error('Error fetching default Plan ID:', error);
+      // Handle the error appropriately, e.g., throw a custom error
+      throw new Error('Failed to create company due to plan retrieval error');
     }
 
     return newCompany.save();

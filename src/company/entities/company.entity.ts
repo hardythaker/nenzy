@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 import { Department } from 'src/department/schema/department.schema';
 import { COMPANY_SIZE } from '../dto/create-company.dto';
+import { Plan } from 'src/plan/entities/plan.entity';
 
 export type CompanyDocument = HydratedDocument<Company>;
 
@@ -24,8 +25,13 @@ export class Company {
   departments!: Department[];
 
   //TODO: fecth the plan ids and add the FreePlan's id as default Plan Id
-  @Prop({ type: Types.ObjectId, required: true, default: 1 }) //ref: Plan.name
-  plan?: Types.ObjectId; //TODO change it to plan class
+  @Prop({
+    type: Types.ObjectId,
+    required: true,
+    ref: Plan.name,
+    alias: 'planId',
+  })
+  plan!: Plan;
 }
 
 export const CompanySchema = SchemaFactory.createForClass(Company);

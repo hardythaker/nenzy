@@ -27,6 +27,10 @@ export class PlanService {
     return this.planModel.findById(id).lean().exec();
   }
 
+  findOneByName(name: string) {
+    return this.planModel.findOne({ name }).exec();
+  }
+
   //`This action updates a #${id} plan`;
   update(id: string, updatePlanDto: UpdatePlanDto) {
     return this.planModel

@@ -10,7 +10,13 @@ async function bootstrap() {
 
   //Setup CORS Config
   app.enableCors({
-    origin: ['http://localhost:*'],
+    origin: (origin, callback) => {
+      if (origin && origin.startsWith('http://localhost:')) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
   });
 
   //Setup global prefix as hostname/api/{routes}

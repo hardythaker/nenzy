@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Company, CompanySchema } from './entities/company.entity';
 import { CompanyUserRoleModule } from 'src/company-user-role/company-user-role.module';
 import { RoleModule } from 'src/role/role.module';
+import { PlanModule } from 'src/plan/plan.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { RoleModule } from 'src/role/role.module';
     ]),
     CompanyUserRoleModule,
     RoleModule,
+    PlanModule,
   ],
   controllers: [CompanyController],
   providers: [CompanyService],

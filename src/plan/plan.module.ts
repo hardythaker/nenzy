@@ -16,5 +16,6 @@ import { Plan, PlanSchema } from './entities/plan.entity';
   ],
   controllers: [PlanController],
   providers: [PlanService],
+  exports: [PlanService],
 })
 export class PlanModule {}

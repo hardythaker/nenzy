@@ -8,6 +8,11 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  //Setup CORS Config
+  app.enableCors({
+    origin: ['http://localhost:*'],
+  });
+
   //Setup global prefix as hostname/api/{routes}
   app.setGlobalPrefix('api');
 
@@ -30,8 +35,8 @@ async function bootstrap() {
     .setTitle('Nenzy API')
     .setDescription('The Nenzy API documentation')
     .setVersion('1.0')
-    .addServer('http://localhost:3000/', 'Local environment')
     .addServer('https://nenzy.onrender.com/', 'Devlopment environment')
+    .addServer('/', 'Local environment')
     .addBearerAuth()
     .addSecurityRequirements('bearer')
     .build();

@@ -19,6 +19,7 @@ import { PlanModule } from './plan/plan.module';
 import { CouponModule } from './coupon/coupon.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { JobApplicationModule } from './job-application/job-application.module';
+import { JobInvitationModule } from './job-invitation/job-invitation.module';
 
 @Module({
   imports: [
@@ -57,6 +58,7 @@ import { JobApplicationModule } from './job-application/job-application.module';
     CouponModule,
     SubscriptionModule,
     JobApplicationModule,
+    JobInvitationModule,
   ],
   controllers: [AppController],
   providers: [

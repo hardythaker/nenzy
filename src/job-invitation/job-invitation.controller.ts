@@ -19,16 +19,16 @@ export class JobInvitationController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.jobInvitationService.findOne(+id);
+    return this.jobInvitationService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateJobInvitationDto: UpdateJobInvitationDto) {
-    return this.jobInvitationService.update(+id, updateJobInvitationDto);
+    return this.jobInvitationService.update(id, updateJobInvitationDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.jobInvitationService.remove(+id);
+    return this.jobInvitationService.remove(id);
   }
 }

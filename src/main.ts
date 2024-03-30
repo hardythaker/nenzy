@@ -44,7 +44,7 @@ async function bootstrap() {
   SwaggerModule.setup('api-docs', app, document, {
     swaggerOptions: {
       tagsSorter: 'alpha',
-      operationsSorter: 'alpha',
+      operationsSorter: 'method',
     },
     customSiteTitle: 'Nenzy API Documentation',
   });

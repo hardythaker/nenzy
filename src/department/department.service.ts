@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateDepartmentDto } from './dto/create-department.dto';
 import { UpdateDepartmentDto } from './dto/update-department.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { Department } from './schema/department.schema';
+import { Department } from './entity/department.entity';
 import { Model } from 'mongoose';
 import { ApiTags } from '@nestjs/swagger';
 

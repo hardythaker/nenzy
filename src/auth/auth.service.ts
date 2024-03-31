@@ -164,7 +164,7 @@ export class AuthService {
 
     //find the user; fail if doesn't exists
     const user = await this.userService.findOneById(ident);
-    if (!user) throw new BadRequestException('User not found');
+    if (!user) throw new BadRequestException('Link is Invalid');
 
     //Generate the hash again
     const newHash = this.generateSHA256Hash(

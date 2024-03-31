@@ -24,13 +24,6 @@ export class CreateUserDto extends login {
 
   @IsEnum(USER_TYPE)
   userType!: USER_TYPE;
-
-  @ApiProperty({ required: false, default: true })
-  @IsBoolean()
-  isEnabled?: boolean = true;
-
-  @IsOptional()
-  refreshToken?: string | null;
 }
 
 // {

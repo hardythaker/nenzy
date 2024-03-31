@@ -23,7 +23,7 @@ export class UserService {
   }
 
   async findByUsername(username: string) {
-    return this.userModel.findOne({ username }).lean().exec();
+    return this.userModel.findOne({ username }).exec();
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {

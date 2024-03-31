@@ -11,27 +11,16 @@ import {
   IsStrongPassword,
   ValidateIf,
 } from 'class-validator';
+import { login } from 'src/auth/dto/login.dto';
 
 export enum USER_TYPE {
   company = 'company',
   candidate = 'candidate',
 }
 
-export class CreateUserDto {
+export class CreateUserDto extends login {
   @IsString()
   fullName!: string;
-
-  @IsEmail()
-  username!: string;
-
-  @IsStrongPassword({
-    minLength: 8,
-    minLowercase: 1,
-    minNumbers: 1,
-    minSymbols: 1,
-    minUppercase: 1,
-  })
-  password!: string;
 
   @IsEnum(USER_TYPE)
   userType!: USER_TYPE;

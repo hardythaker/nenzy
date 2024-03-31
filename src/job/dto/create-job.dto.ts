@@ -8,7 +8,7 @@ import {
   IsString,
   Min,
 } from 'class-validator';
-import { JobLevel } from '../schema/job.schema';
+import { JobLevel } from '../entities/job.entity';
 
 export class CreateJobDto {
   @IsMongoId()

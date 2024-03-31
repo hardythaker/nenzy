@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import { compare, hash } from 'bcrypt';
-import { User } from 'src/user/schemas/user.schema';
+import { User } from 'src/user/entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { Types } from 'mongoose';

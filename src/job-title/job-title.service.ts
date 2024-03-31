@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateJobTitleDto } from './dto/create-job-title.dto';
 import { UpdateJobTitleDto } from './dto/update-job-title.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { JobTitle } from './schemas/job-title.schema';
+import { JobTitle } from './entities/job-title.entity';
 import { Model } from 'mongoose';
 
 @Injectable()

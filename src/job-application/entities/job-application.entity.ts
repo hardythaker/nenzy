@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
-import { Job } from 'src/job/schema/job.schema';
-import { User } from 'src/user/schemas/user.schema';
+import { Job } from 'src/job/entities/job.entity';
+import { User } from 'src/user/entities/user.entity';
 
 export type JobApplicationDocument = HydratedDocument<JobApplication>;
 

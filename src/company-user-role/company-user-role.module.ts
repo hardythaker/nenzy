@@ -5,7 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import {
   CompanyUserRole,
   CompanyUserRoleSchema,
-} from './schemas/company-user-role.schema';
+} from './entities/company-user-role.entity';
 
 @Module({
   imports: [

@@ -1,9 +1,9 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaTypes, Types } from 'mongoose';
 import { Company } from 'src/company/entities/company.entity';
 import { Department } from 'src/department/entity/department.entity';
-import { JobTitle } from 'src/job-title/schemas/job-title.schema';
-import { User } from 'src/user/schemas/user.schema';
+import { JobTitle } from 'src/job-title/entities/job-title.entity';
+import { User } from 'src/user/entities/user.entity';
 
 export type JobDocument = HydratedDocument<Job>;
 

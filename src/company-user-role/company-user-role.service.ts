@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CompanyUserRole } from './schemas/company-user-role.schema';
+import { CompanyUserRole } from './entities/company-user-role.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateCompanyUserRoleDto } from './dto/create-company-user-role.dto';

@@ -10,7 +10,7 @@ import { ValidationError, validateOrReject } from 'class-validator';
 import { RoleService } from 'src/role/role.service';
 import { RoleDocument } from 'src/role/entities/role.entity';
 import { DeleteResult } from 'mongodb';
-import { CompanyUserRoleDocument } from 'src/company-user-role/schemas/company-user-role.schema';
+import { CompanyUserRoleDocument } from 'src/company-user-role/entities/company-user-role.entity';
 import { PlanService } from 'src/plan/plan.service';
 
 @Injectable()

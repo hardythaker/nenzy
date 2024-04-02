@@ -11,13 +11,15 @@ import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { Types } from 'mongoose';
 import { ConfigService } from '@nestjs/config';
 import { createHash } from 'crypto';
+import { MailService } from 'src/mail/mail.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userService: UserService,
-    private jwtService: JwtService,
-    private configService: ConfigService,
+    private readonly jwtService: JwtService,
+    private readonly configService: ConfigService,
+    private readonly mailService: MailService,
   ) {}
 
   async validate(username: string, password: string) {
@@ -140,7 +142,8 @@ export class AuthService {
     );
 
     const url = `${serverUrl}/reset-password/${encodedIdent}/${encodedTimestamp}-${hash}`;
-    return url;
+    await this.mailService.sendForgotPasswordLink(user, url);
+    return;
   }
 
   async resetPassword(

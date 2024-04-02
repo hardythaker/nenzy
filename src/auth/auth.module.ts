@@ -8,9 +8,16 @@ import { UserModule } from 'src/user/user.module';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { RefreshTokenStrategy } from './strategies/refresh-token.strategy';
+import { MailModule } from 'src/mail/mail.module';
 
 @Module({
-  imports: [UserModule, PassportModule, JwtModule.register({}), ConfigModule],
+  imports: [
+    UserModule,
+    PassportModule,
+    JwtModule.register({}),
+    ConfigModule,
+    MailModule,
+  ],
   providers: [AuthService, LocalStrategy, JwtStrategy, RefreshTokenStrategy],
   controllers: [AuthController],
   exports: [AuthService],

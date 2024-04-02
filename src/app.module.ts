@@ -20,6 +20,7 @@ import { CouponModule } from './coupon/coupon.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { JobApplicationModule } from './job-application/job-application.module';
 import { JobInvitationModule } from './job-invitation/job-invitation.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -59,6 +60,7 @@ import { JobInvitationModule } from './job-invitation/job-invitation.module';
     SubscriptionModule,
     JobApplicationModule,
     JobInvitationModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [

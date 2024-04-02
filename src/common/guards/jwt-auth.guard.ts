@@ -18,7 +18,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       context.getHandler(),
       context.getClass(),
     ]);
-    const isDEV = this.config.get('IS_DEVELOPMENT')?.toLowerCase() === 'true';
+    const isDEV = this.config.get('NODE_ENV')?.toLowerCase() === 'development';
     if (isPublic || isDEV) {
       return true;
     }

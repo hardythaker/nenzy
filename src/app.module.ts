@@ -21,13 +21,13 @@ import { SubscriptionModule } from './subscription/subscription.module';
 import { JobApplicationModule } from './job-application/job-application.module';
 import { JobInvitationModule } from './job-invitation/job-invitation.module';
 import { MailModule } from './mail/mail.module';
+import { validationSchema } from '../env/validation';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      validationSchema: Joi.object({
-        DATABASE_URI: Joi.string().required(), //DATABASE_URI env variable is required to start the APP.
-      }),
+      envFilePath: `${process.cwd()}/env/.env.${process.env.NODE_ENV}.local`,
+      validationSchema,
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],

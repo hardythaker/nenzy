@@ -1,3 +1,10 @@
+import { Request as ExpressRequest } from 'express';
+import {
+  DefaultHttpExceptionSchema,
+} from 'src/common/dto/default-http-exception.dto';
+import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
+import { CreateUserDto } from 'src/user/dto/create-user.dto';
+
 import {
   Body,
   Controller,
@@ -10,13 +17,8 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { LocalAuthGuard } from '../common/guards/local-auth.guard';
-import { Public } from '../common/guards/public.guard';
-import { CreateUserDto } from 'src/user/dto/create-user.dto';
-import { AuthService } from './auth.service';
 import {
   ApiBadRequestResponse,
-  ApiBearerAuth,
   ApiBody,
   ApiCreatedResponse,
   ApiForbiddenResponse,
@@ -25,13 +27,15 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+
+import { LocalAuthGuard } from '../common/guards/local-auth.guard';
+import { Public } from '../common/guards/public.guard';
 import { RefreshTokenGuard } from '../common/guards/refresh-token.guard';
+import { AuthService } from './auth.service';
 import { login } from './dto/login.dto';
-import { Request as ExpressRequest } from 'express';
-import { Password } from './dto/password.dto';
 import { LoginResponse } from './dto/LoginResponse.dto';
-import { DefaultHttpExceptionSchema } from 'src/common/dto/default-http-exception.dto';
-import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
+import { Password } from './dto/password.dto';
+import { SignUpResponse } from './dto/sign-up-response.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -58,14 +62,14 @@ export class AuthController {
   @Public()
   @ApiCreatedResponse({
     description: 'Account created',
-    type: LoginResponse,
+    type: SignUpResponse,
   })
   @ApiBadRequestResponse({
     description: 'User already Exists',
     type: DefaultHttpExceptionSchema,
   })
   @Post('signup')
-  async signup(@Body() user: CreateUserDto): Promise<LoginResponse> {
+  async signup(@Body() user: CreateUserDto): Promise<SignUpResponse> {
     return this.authService.signup(user);
   }
 

@@ -1,16 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsArray,
-  IsBoolean,
-  IsEmail,
-  IsEnum,
-  IsIn,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  IsStrongPassword,
-  ValidateIf,
-} from 'class-validator';
+import { IsString } from 'class-validator';
 import { login } from 'src/auth/dto/login.dto';
 
 export enum USER_TYPE {
@@ -21,9 +9,6 @@ export enum USER_TYPE {
 export class CreateUserDto extends login {
   @IsString()
   fullName!: string;
-
-  @IsEnum(USER_TYPE)
-  userType!: USER_TYPE;
 }
 
 // {

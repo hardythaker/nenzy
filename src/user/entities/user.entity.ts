@@ -1,5 +1,14 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument, Types } from 'mongoose';
+import {
+  HydratedDocument,
+  Types,
+} from 'mongoose';
+
+import {
+  Prop,
+  Schema,
+  SchemaFactory,
+} from '@nestjs/mongoose';
+
 import { USER_TYPE } from '../dto/create-user.dto';
 
 export type UserDocument = HydratedDocument<User>;
@@ -20,8 +29,8 @@ export class User {
   @Prop({ required: true })
   password!: string;
 
-  @Prop({ required: true, enum: USER_TYPE })
-  userType!: USER_TYPE;
+  @Prop({ enum: USER_TYPE })
+  userType?: USER_TYPE;
 
   @Prop()
   refreshToken?: string;

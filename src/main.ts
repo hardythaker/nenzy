@@ -1,9 +1,16 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
 import { Logger } from 'nestjs-pino';
-import { MongooseExceptionFilter } from './common/filters/mongoose-exception.filter';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
+import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import {
+  DocumentBuilder,
+  SwaggerModule,
+} from '@nestjs/swagger';
+
+import { AppModule } from './app.module';
+import {
+  MongooseExceptionFilter,
+} from './common/filters/mongoose-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -35,8 +42,8 @@ async function bootstrap() {
     .setTitle('Nenzy API')
     .setDescription('The Nenzy API documentation')
     .setVersion('1.0')
-    .addServer('https://nenzy.onrender.com/', 'Devlopment environment')
-    .addServer('/', 'Local environment')
+    // .addServer('https://nenzy.onrender.com/', 'Devlopment environment')
+    // .addServer('/', 'Local environment')
     .addBearerAuth()
     .addSecurityRequirements('bearer')
     .build();

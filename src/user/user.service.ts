@@ -1,10 +1,14 @@
-import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { User, UserDocument } from './entities/user.entity';
+
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { hash } from 'bcrypt';
+import {
+  User,
+  UserDocument,
+} from './entities/user.entity';
 
 @Injectable()
 export class UserService {

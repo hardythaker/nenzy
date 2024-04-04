@@ -3,14 +3,19 @@ import {
   Controller,
   Delete,
   Get,
+  NotFoundException,
   Param,
   Patch,
   Post,
 } from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiTags,
+} from '@nestjs/swagger';
+
 import { CreateUserDto } from './dto/create-user.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserService } from './user.service';
 
 @ApiTags('User')
 @ApiBearerAuth()
@@ -24,18 +29,34 @@ export class UserController {
   }
 
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  async findAll() {
+    return (await this.userService.findAll()).map((user) => {
+      const { password, ...result } = user.toJSON({
+        versionKey: false,
+      });
+      return result;
+    });
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOneById(id);
+  async findOne(@Param('id') id: string) {
+    const user = (await this.userService.findOneById(id))?.toJSON({
+      versionKey: false,
+    });
+    if (!user) throw new NotFoundException('User not found');
+    const { password, ...result } = user;
+    return result;
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() UpdateUserDto: UpdateUserDto) {
-    return this.userService.update(id, UpdateUserDto);
+  async update(@Param('id') id: string, @Body() UpdateUserDto: UpdateUserDto) {
+    const user = (await this.userService.update(id, UpdateUserDto))?.toJSON({
+      versionKey: false,
+    });
+    if (!user) throw new NotFoundException('User not found');
+
+    const { password, ...result } = user;
+    return result;
   }
 
   @Delete(':id')

@@ -1,7 +1,5 @@
 import { Request as ExpressRequest } from 'express';
-import {
-  DefaultHttpExceptionSchema,
-} from 'src/common/dto/default-http-exception.dto';
+import { DefaultHttpExceptionSchema } from 'src/common/dto/default-http-exception.dto';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 

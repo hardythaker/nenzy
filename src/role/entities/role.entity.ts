@@ -4,7 +4,6 @@ import { HydratedDocument } from 'mongoose';
 
 export type RoleDocument = HydratedDocument<Role>;
 
-
 @Schema({
   timestamps: true,
 })

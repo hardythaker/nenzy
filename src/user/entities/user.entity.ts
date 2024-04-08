@@ -1,13 +1,6 @@
-import {
-  HydratedDocument,
-  Types,
-} from 'mongoose';
+import { HydratedDocument, Types } from 'mongoose';
 
-import {
-  Prop,
-  Schema,
-  SchemaFactory,
-} from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 import { USER_TYPE } from '../dto/create-user.dto';
 
